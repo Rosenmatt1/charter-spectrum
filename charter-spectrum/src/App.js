@@ -4,10 +4,11 @@ import { gql } from 'apollo-boost';
 
 import Loading from './Loading';
 import Error from './Error';
+import Table from './components/Table';
 
 
 const App = () => {
-    const [searchResults, setSearchResults] = useState([])
+    const [fetchedData, setfetchedData] = useState([])
 
     useEffect(() => {
         fetch('https://code-challenge.spectrumtoolbox.com/api/restaurants/', {
@@ -20,12 +21,12 @@ const App = () => {
             .then(response => response.json())
             .then(data => {
                 // console.log('Success:', data);
-                setSearchResults(data)
+                setfetchedData(data)
             })
             .catch((error) => {
                 console.error('Error:', error);
             });
-    }, []); 
+    }, []);
 
     // const checkData = (data) => {
     //     console.log(data)
@@ -34,6 +35,8 @@ const App = () => {
 
     return (
         <div id="root">
+
+            <Table data={fetchedData} />
             {/* <Query query={GET_RESTAURANTS}  >
                 {({ data, loading, error }) => {
                     if (loading) return <Loading />
@@ -46,9 +49,10 @@ const App = () => {
                 }}
             </Query> */}
 
-            {searchResults.map((restuarant, index) => (
+            
+            {/* {fetchedData.map((restuarant, index) => (
                <p> {restuarant.name} </p>
-            ))}
+            ))} */}
 
         </div>
     )
