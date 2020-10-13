@@ -15,13 +15,22 @@ const Table = (data) => {
         <div>
             <table class="gridtable" >
                 <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Age</th>
+                    <th><i class="fas fa-filter"></i></th>
+                    <th><i class="fas fa-filter"></i></th>
+                    <th><i class="fas fa-filter"></i></th>
+                    <th><i class="fas fa-filter"></i></th>
+                    <th><i class="fas fa-filter"></i></th>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Phone</th>
+                    <th>Genre</th>
                 </tr>
                 {data.data.map((restuarant, index) => (
                     <tr>
-                        <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.name}</th>
+                        <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.phone}</th><th>{restuarant.genre}</th>
                     </tr>
                 ))}
             </table >
