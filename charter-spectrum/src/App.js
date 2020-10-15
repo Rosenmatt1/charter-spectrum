@@ -26,20 +26,11 @@ const App = () => {
             });
     }, []);
 
-    // const checkData = (data) => {
-    //     console.log(data)
-    // }
-
 
     return (
         <div id="root">
 
             <Table data={fetchedData} />
-    
-
-            {/* {fetchedData.map((restuarant, index) => (
-               <p> {restuarant.name} </p>
-            ))} */}
 
         </div>
     )

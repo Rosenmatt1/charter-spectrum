@@ -6,9 +6,10 @@ const Table = (data) => {
     const [activePage, setActivePage] = useState(1)
     const [search, setSearch] = useState("")
     const receivedData = data.data || null
-    const result = receivedData.filter(restuarant => {
+
+
+    const filteredSearch = receivedData.filter(restuarant => {
         if (restuarant.name.includes(search)) {
-            console.log(restuarant.name)
             return restuarant 
         }
     })
@@ -62,7 +63,7 @@ const Table = (data) => {
 
                 {search.length > 0
                     ?
-                    result.map((restuarant, idx) => (
+                    filteredSearch.map((restuarant, idx) => (
                         <tr key={idx}>
                             <th> {restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
                         </tr>))
