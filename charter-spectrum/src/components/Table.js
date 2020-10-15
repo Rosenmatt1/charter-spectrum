@@ -5,7 +5,7 @@ import styles from '../styles.css';
 const Table = (data) => {
     const [activePage, setActivePage] = useState(1)
     const [search, setSearch] = useState("")
-    const receivedData = data.data || null
+    const receivedData = data.data.sort((a, b) => a.name.localeCompare(b.name)) || null
 
 
     const filteredSearch = receivedData.filter(restuarant => {
@@ -17,7 +17,7 @@ const Table = (data) => {
 
     const trackPage = (e, val) => {
         e.preventDefault()
-        console.log(e)
+        // console.log(e)
         //target is coming through null
         setActivePage(val)
         console.log("activepage", activePage)
@@ -61,7 +61,7 @@ const Table = (data) => {
                     <th>Genre</th>
                 </tr>
 
-                {search.length > 0
+                {/* {search.length > 0
                     ?
                     filteredSearch.map((restuarant, idx) => (
                         <tr key={idx}>
@@ -72,14 +72,14 @@ const Table = (data) => {
                         <tr key={idx}>
                             <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
                         </tr>))
-                }
+                } */}
 
 
-                {/* {receivedData.map((restuarant, idx) => (
+                {receivedData.map((restuarant, idx) => (
                   <tr key={idx}>
                         <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
                     </tr>
-                ))}          */}
+                ))}         
 
             </table >
 
