@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import styles from '../styles.css';
+import StatesSelect from './StatesSelect';
 
 
 const Table = (data) => {
     const [activePage, setActivePage] = useState(1)
     const [search, setSearch] = useState("")
-    const receivedData = data.data.sort((a, b) => a.name.localeCompare(b.name)) || null
+    const [genre, sortGenre] = useState(false)
+    const [state, sortState] = useState(false)
+
+    var receivedData = data.data.sort((a, b) => a.name.localeCompare(b.name)) || null
 
 
     const filteredSearch = receivedData.filter(restuarant => {
@@ -13,6 +17,15 @@ const Table = (data) => {
             return restuarant 
         }
     })
+
+     const sortByGenre = () => {
+        sortGenre(true)
+
+        if (genre) {
+            receivedData = data.data.sort((a, b) => a.genre.localeCompare(b.genre))
+            console.log(receivedData)
+        }
+    }
 
 
     const trackPage = (e, val) => {
@@ -49,9 +62,9 @@ const Table = (data) => {
                 <tr>
                     <th className="nameFilter"><i className="fas fa-filter"></i></th>
                     <th className="cityFilter"><i className="fas fa-filter"></i></th>
-                    <th className="State Filter"><i className="fas fa-filter"></i></th>
+                    <th className="State Filter"><StatesSelect/></th>
                     <th className="phoneFilter"><i className="fas fa-filter"></i></th>
-                    <th className="genreFilter"><i className="fas fa-filter"></i></th>
+                    <th className="genreFilter" onClick={() => sortByGenre()}><i className="fas fa-filter"></i></th>
                 </tr>
                 <tr>
                     <th>Name</th>
@@ -61,7 +74,7 @@ const Table = (data) => {
                     <th>Genre</th>
                 </tr>
 
-                {/* {search.length > 0
+                {search.length > 0
                     ?
                     filteredSearch.map((restuarant, idx) => (
                         <tr key={idx}>
@@ -72,14 +85,14 @@ const Table = (data) => {
                         <tr key={idx}>
                             <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
                         </tr>))
-                } */}
+                }
 
 
-                {receivedData.map((restuarant, idx) => (
+                {/* {receivedData.map((restuarant, idx) => (
                   <tr key={idx}>
                         <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
                     </tr>
-                ))}         
+                ))}          */}
 
             </table >
 
