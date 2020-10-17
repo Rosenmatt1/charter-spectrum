@@ -3,7 +3,7 @@ import styles from '../styles.css';
 import StatesSelect from './StatesSelect';
 
 
-const Table = (data) => {
+const Table = ( selectedState, data) => {
     const [activePage, setActivePage] = useState(1)
     const [search, setSearch] = useState("")
     const [genre, sortGenre] = useState(false)
@@ -62,7 +62,7 @@ const Table = (data) => {
                 <tr>
                     <th className="nameFilter"><i className="fas fa-filter"></i></th>
                     <th className="cityFilter"><i className="fas fa-filter"></i></th>
-                    <th className="State Filter"><StatesSelect/></th>
+                    <th className="State Filter"><StatesSelect /></th>
                     <th className="phoneFilter"><i className="fas fa-filter"></i></th>
                     <th className="genreFilter" onClick={() => sortByGenre()}><i className="fas fa-filter"></i></th>
                 </tr>

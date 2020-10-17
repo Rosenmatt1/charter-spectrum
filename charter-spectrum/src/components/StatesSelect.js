@@ -2,10 +2,12 @@ import React, { useState } from "react";
 
 
 const StatesSelect = () => {
+    const [selectedState, setSelectedState] = useState("")
 
 const captureStateSelected = (e) => {
     // e.preventDefault()
-    console.log("State Selected", e.target.value)
+    console.log("State Selected", typeof(e.target.value))
+    setSelectedState(e.target.value)
 }
 
     return (
@@ -67,6 +69,7 @@ const captureStateSelected = (e) => {
         </div>
     )
 };
+
 
 
 export default StatesSelect;
