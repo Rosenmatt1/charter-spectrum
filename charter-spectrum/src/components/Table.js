@@ -3,7 +3,7 @@ import styles from '../styles.css';
 import StatesSelect from './StatesSelect';
 
 
-const Table = ( selectedState, data) => {
+const Table = (data) => {
     const [activePage, setActivePage] = useState(1)
     const [search, setSearch] = useState("")
     const [genre, sortGenre] = useState(false)
@@ -40,19 +40,6 @@ const Table = ( selectedState, data) => {
 
     // }, []);
 
-    // this.setState({
-    //     email: e.target.value
-    //   }, () => {
-    //     if (this.state.email.length > 0) {
-    //       this.setState({
-    //         emailActive: true
-    //       })
-    //     } else {
-    //       this.setState({
-    //         emailActive: false
-    //       })
-    //     }
-    //   })
 
     console.log("search", search.length)
     return (
