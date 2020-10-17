@@ -1,6 +1,6 @@
-// import { CHOSEN_STATE } from '../actionTypes.js';
+import { CHOSEN_STATE } from '../actionTypes.js';
 
-export default (state = false, action) => {
+export default (state = "", action) => {
     switch (action.type) {
       case 'CHOSEN_STATE':
         return action.payload

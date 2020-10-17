@@ -1,6 +1,6 @@
 
 import { combineReducers } from 'redux';
-import stateSelected from './stateSelected ';
+import chosenState from './chosenState';
 
 
-export default combineReducers({ stateSelected  })
+export default combineReducers({ chosenState })

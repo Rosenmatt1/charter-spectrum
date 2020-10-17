@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { connect } from 'react-redux';
+import { chosenState } from '../redux/actions';
 
 
 const StatesSelect = () => {
@@ -71,5 +73,11 @@ const captureStateSelected = (e) => {
 };
 
 
+const mapStateToProps = (state) => {
+    return {
+      ...state
+    }
+  }
 
-export default StatesSelect;
+
+export default connect(mapStateToProps, { chosenState })(StatesSelect)
