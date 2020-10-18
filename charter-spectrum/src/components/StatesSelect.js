@@ -3,13 +3,10 @@ import { connect } from 'react-redux';
 import { chosenState } from '../redux/actions';
 
 
-const StatesSelect = () => {
-    const [selectedState, setSelectedState] = useState("")
+const StatesSelect = (props) => {
 
 const captureStateSelected = (e) => {
-    // e.preventDefault()
-    console.log("State Selected", typeof(e.target.value))
-    setSelectedState(e.target.value)
+    props.chosenState(e.target.value)
 }
 
     return (
