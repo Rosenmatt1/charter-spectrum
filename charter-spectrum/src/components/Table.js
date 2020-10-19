@@ -1,28 +1,31 @@
 import React, { useState, useEffect } from "react";
 import styles from '../styles.css';
 import StatesSelect from './StatesSelect';
+import { connect } from 'react-redux';
 
 
-const Table = (data) => {
+const Table = (props) => {
+    console.log("PROPS", props)
     const [activePage, setActivePage] = useState(1)
     const [search, setSearch] = useState("")
     const [genre, sortGenre] = useState(false)
-    const [state, sortState] = useState(false)
 
-    var receivedData = data.data.sort((a, b) => a.name.localeCompare(b.name)) || null
+    const data = props.data
+    var receivedData = data.sort((a, b) => a.name.localeCompare(b.name)) || null
 
 
     const filteredSearch = receivedData.filter(restuarant => {
         if (restuarant.name.includes(search)) {
-            return restuarant 
+            return restuarant
         }
     })
 
-     const sortByGenre = () => {
+
+    const sortByGenre = () => {
         sortGenre(true)
 
         if (genre) {
-            receivedData = data.data.sort((a, b) => a.genre.localeCompare(b.genre))
+            receivedData = data.sort((a, b) => a.genre.localeCompare(b.genre))
             console.log(receivedData)
         }
     }
@@ -46,42 +49,72 @@ const Table = (data) => {
         <div>
             <input onChange={(e) => setSearch(e.target.value)} />
             <table className="gridtable" >
-                <tr>
-                    <th className="nameFilter"><i className="fas fa-filter"></i></th>
-                    <th className="cityFilter"><i className="fas fa-filter"></i></th>
-                    <th className="State Filter"><StatesSelect /></th>
-                    <th className="phoneFilter"><i className="fas fa-filter"></i></th>
-                    <th className="genreFilter" onClick={() => sortByGenre()}><i className="fas fa-filter"></i></th>
-                </tr>
-                <tr>
-                    <th>Name</th>
-                    <th>City</th>
-                    <th>State</th>
-                    <th>Phone</th>
-                    <th>Genre</th>
-                </tr>
+                <tbody>
+                    <tr>
+                        <th className="nameFilter"><i className="fas fa-filter"></i></th>
+                        <th className="cityFilter"><i className="fas fa-filter"></i></th>
+                        <th className="State Filter"><StatesSelect /></th>
+                        <th className="phoneFilter"><i className="fas fa-filter"></i></th>
+                        <th className="genreFilter" onClick={() => sortByGenre()}><i className="fas fa-filter"></i></th>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Phone</th>
+                        <th>Genre</th>
+                    </tr>
 
-                {search.length > 0
-                    ?
-                    filteredSearch.map((restuarant, idx) => (
-                        <tr key={idx}>
-                            <th> {restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
-                        </tr>))
-                    :
-                    receivedData.map((restuarant, idx) => (
-                        <tr key={idx}>
-                            <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
-                        </tr>))
-                }
+                    {/* {search.length > 0
+                        ?
+                        filteredSearch.map((restuarant, idx) => (
+                            <tr key={idx}>
+                                <th> {restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
+                            </tr>))
+                        :
+                        receivedData.map((restuarant, idx) => (
+                            <tr key={idx}>
+                                <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
+                            </tr>))
+                    } */}
 
 
-                {/* {receivedData.map((restuarant, idx) => (
+
+
+                    {/* {receivedData.map((restuarant, idx) => (
                   <tr key={idx}>
                         <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
                     </tr>
                 ))}          */}
 
+                    {props.chosenState.length > 0
+                        ?
+                        // receivedData.map((restuarant, idx) => (
+                        //     if (restuarant.state === props.choseState) {
+                        //         console.log(restuarant)
+                        //     }
+                        //     return restaurant 
+                        // ))
+                        <h1>Hellow Work</h1>
+
+                        // receivedData.filter((restuarant, idx) => (
+                        // if (restuarant.state === props.choseState) {
+                        //     return (
+                        //         <tr key={idx}>
+                        //     <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
+                        // </tr>)
+                        // }
+                        // return restuarant
+                    :
+                    receivedData.map((restuarant, idx) => (
+                        <tr key={idx}>
+                        <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
+                    </tr>))
+                    }
+
+                </tbody>
             </table >
+
 
             <div class="pagination"  >
                 <a href="#">&laquo;</a>
@@ -99,4 +132,12 @@ const Table = (data) => {
 };
 
 
-export default Table;
+const mapStateToProps = (state) => {
+    console.log("STATE!!!", state)
+    return {
+        ...state,
+    }
+}
+
+
+export default connect(mapStateToProps)(Table);
