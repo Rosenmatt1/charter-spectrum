@@ -9,13 +9,22 @@ const Table = (props) => {
     const [activePage, setActivePage] = useState(1)
     const [search, setSearch] = useState("")
     const [genre, sortGenre] = useState(false)
+    const [selectedState, setSelectedState] = useState("")
 
     const data = props.data
     var receivedData = data.sort((a, b) => a.name.localeCompare(b.name)) || null
 
 
-    const filteredSearch = receivedData.filter(restuarant => {
+    var filteredSearch = receivedData.filter(restuarant => {
         if (restuarant.name.includes(search)) {
+            return restuarant
+        }
+    })
+
+
+    var filteredState = receivedData.filter(restuarant => {
+        // setSelectedState(props.chosenState)
+        if (restuarant.state === props.chosenState) {
             return restuarant
         }
     })
@@ -33,15 +42,10 @@ const Table = (props) => {
 
     const trackPage = (e, val) => {
         e.preventDefault()
-        // console.log(e)
-        //target is coming through null
         setActivePage(val)
         console.log("activepage", activePage)
     }
 
-    // useEffect(() => {
-
-    // }, []);
 
 
     console.log("search", search.length)
@@ -80,7 +84,6 @@ const Table = (props) => {
 
 
 
-
                     {/* {receivedData.map((restuarant, idx) => (
                   <tr key={idx}>
                         <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
@@ -89,27 +92,19 @@ const Table = (props) => {
 
                     {props.chosenState.length > 0
                         ?
-                        // receivedData.map((restuarant, idx) => (
-                        //     if (restuarant.state === props.choseState) {
-                        //         console.log(restuarant)
-                        //     }
-                        //     return restaurant 
-                        // ))
-                        <h1>Hellow Work</h1>
+                        filteredState.map((restuarant, idx) => {
+                            return (
+                                <tr key={idx}>
+                                    <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
+                                </tr>
+                            )
+                        })
 
-                        // receivedData.filter((restuarant, idx) => (
-                        // if (restuarant.state === props.choseState) {
-                        //     return (
-                        //         <tr key={idx}>
-                        //     <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
-                        // </tr>)
-                        // }
-                        // return restuarant
-                    :
-                    receivedData.map((restuarant, idx) => (
-                        <tr key={idx}>
-                        <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
-                    </tr>))
+                        :
+                        receivedData.map((restuarant, idx) => (
+                            <tr key={idx}>
+                                <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
+                            </tr>))
                     }
 
                 </tbody>
