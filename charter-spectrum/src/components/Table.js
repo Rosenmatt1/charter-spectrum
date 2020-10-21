@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from '../styles.css';
 import StatesSelect from './StatesSelect';
+import NoStateDisplay from './NoStateDisplay';
 import { connect } from 'react-redux';
 
 
@@ -23,7 +24,6 @@ const Table = (props) => {
 
 
     var filteredState = receivedData.filter(restuarant => {
-        // setSelectedState(props.chosenState)
         if (restuarant.state === props.chosenState) {
             return restuarant
         }
@@ -49,6 +49,7 @@ const Table = (props) => {
 
 
     console.log("search", search.length)
+    console.log("filteredState.length", filteredState.length)
     return (
         <div>
             <input onChange={(e) => setSearch(e.target.value)} />
@@ -107,6 +108,7 @@ const Table = (props) => {
                             </tr>))
                     }
 
+                    {(props.chosenState.length > 0 && filteredState.length === 0) && <NoStateDisplay />}
                 </tbody>
             </table >
 
