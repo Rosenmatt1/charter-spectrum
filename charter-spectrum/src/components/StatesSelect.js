@@ -13,7 +13,7 @@ const captureStateSelected = (e) => {
         <div>
             <select name="state" id="state" onChange={(e) => captureStateSelected(e)} >
                 <option value="" selected="selected">Select a State</option>
-                <option  eventKey="AL" value="AL">Alabama</option>
+                <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>
                 <option value="AR">Arkansas</option>

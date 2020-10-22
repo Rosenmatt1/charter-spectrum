@@ -9,17 +9,15 @@ const captureGenreSelected = (e) => {
     props.chosenState(e.target.value)
 }
 
+console.log(props)
+
     return (
         <div>
             <select name="state" id="state" onChange={(e) => captureGenreSelected(e)} >
-                <option value="" selected="selected">Select a State</option>
-                <option  eventKey="AL" value="AL"></option>
-                <option value="AK">American</option>
-                <option value="AZ">Seafood</option>
-                <option value="AR">International</option>
-                <option value="CA">Asian</option>
-                
-                
+                <option value="" selected="selected">Select a Genre</option>
+                {props.data.map(genre => {
+                     return <option value={genre}>{genre}</option>
+                })}
             </select>
         </div>
     )

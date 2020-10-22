@@ -79,7 +79,7 @@ const Table = (props) => {
                         <th className="cityFilter"><i className="fas fa-filter"></i></th>
                         <th className="State Filter"><StatesSelect /></th>
                         <th className="phoneFilter"><i className="fas fa-filter"></i></th>
-                        <th className="genreFilter"><i className="fas fa-filter"></i></th>
+                        <th className="genreFilter"><GenreSelect data={genresFiltered}/></th>
                     </tr>
                     <tr>
                         <th>Name</th>
