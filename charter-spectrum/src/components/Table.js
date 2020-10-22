@@ -3,6 +3,7 @@ import styles from '../styles.css';
 import StatesSelect from './StatesSelect';
 import NoStateDisplay from './NoStateDisplay';
 import { connect } from 'react-redux';
+import GenreSelect from "./GenreSelect";
 
 
 const Table = (props) => {
@@ -10,34 +11,53 @@ const Table = (props) => {
     const [activePage, setActivePage] = useState(1)
     const [search, setSearch] = useState("")
     const [genre, sortGenre] = useState(false)
-    const [selectedState, setSelectedState] = useState("")
+    // const [selectedState, setSelectedState] = useState("")
 
     const data = props.data
-    var receivedData = data.sort((a, b) => a.name.localeCompare(b.name)) || null
+    let receivedData = data.sort((a, b) => a.name.localeCompare(b.name)) || null
 
 
-    var filteredSearch = receivedData.filter(restuarant => {
+    const filteredSearch = receivedData.filter(restuarant => {
         if (restuarant.name.includes(search)) {
             return restuarant
         }
     })
 
 
-    var filteredState = receivedData.filter(restuarant => {
+    const filteredState = receivedData.filter(restuarant => {
         if (restuarant.state === props.chosenState) {
             return restuarant
         }
     })
 
+    let genresArray = []
+    let genresFiltered = []
 
-    const sortByGenre = () => {
-        sortGenre(true)
+    const filteredGenre = receivedData.map(restaurant => {
+        let genresSplit = []
 
-        if (genre) {
-            receivedData = data.sort((a, b) => a.genre.localeCompare(b.genre))
-            console.log(receivedData)
-        }
-    }
+        genresArray.push(restaurant.genre)
+        genresSplit = genresArray.join().split(',')
+
+        genresSplit.map(genre => {
+            if (!genresFiltered.includes(genre)) {
+                genresFiltered.push(genre)
+            }
+        //   console.log("genresFiltered", genresFiltered)
+        })
+
+    })
+
+
+
+    // const sortByGenre = () => {
+    //     sortGenre(true)
+
+    //     if (genre) {
+    //         receivedData = data.sort((a, b) => a.genre.localeCompare(b.genre))
+    //         console.log(receivedData)
+    //     }
+    // }
 
 
     const trackPage = (e, val) => {
@@ -49,7 +69,6 @@ const Table = (props) => {
 
 
     console.log("search", search.length)
-    console.log("filteredState.length", filteredState.length)
     return (
         <div>
             <input onChange={(e) => setSearch(e.target.value)} />
@@ -60,7 +79,7 @@ const Table = (props) => {
                         <th className="cityFilter"><i className="fas fa-filter"></i></th>
                         <th className="State Filter"><StatesSelect /></th>
                         <th className="phoneFilter"><i className="fas fa-filter"></i></th>
-                        <th className="genreFilter" onClick={() => sortByGenre()}><i className="fas fa-filter"></i></th>
+                        <th className="genreFilter"><i className="fas fa-filter"></i></th>
                     </tr>
                     <tr>
                         <th>Name</th>
@@ -91,7 +110,8 @@ const Table = (props) => {
                     </tr>
                 ))}          */}
 
-                    {props.chosenState.length > 0
+
+                    {/* {props.chosenState.length > 0
                         ?
                         filteredState.map((restuarant, idx) => {
                             return (
@@ -106,9 +126,10 @@ const Table = (props) => {
                             <tr key={idx}>
                                 <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
                             </tr>))
-                    }
+                    } */}
 
                     {(props.chosenState.length > 0 && filteredState.length === 0) && <NoStateDisplay />}
+
                 </tbody>
             </table >
 
