@@ -39,14 +39,36 @@ const Table = (props) => {
         genresArray.push(restaurant.genre)
         genresSplit = genresArray.join().split(',')
 
+      
+
         genresSplit.map(genre => {
             if (!genresFiltered.includes(genre)) {
                 genresFiltered.push(genre)
             }
         //   console.log("genresFiltered", genresFiltered)
         })
-
     })
+
+
+    const genreMatch = receivedData.map(restaurant => {
+        let genreArr = []
+        let genre = []
+
+        genreArr.push(restaurant.genre)
+        genre = genreArr.join().split(',')
+        console.log("GENRE", genre)
+
+        if (genre.includes(props.chosenGenre)) {
+            console.log.log("true")
+            // return restaurant
+        } else {
+            console.log("false")
+        }
+    })
+
+    console.log(genreMatch)
+
+
 
 
 
@@ -104,11 +126,11 @@ const Table = (props) => {
 
 
 
-                    {/* {receivedData.map((restuarant, idx) => (
+                    {receivedData.map((restuarant, idx) => (
                   <tr key={idx}>
                         <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
                     </tr>
-                ))}          */}
+                ))}         
 
 
                     {/* {props.chosenState.length > 0

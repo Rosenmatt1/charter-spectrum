@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { connect } from 'react-redux';
-import { chosenState } from '../redux/actions';
+import { chosenGenre } from '../redux/actions';
 
 
 const GenreSelect = (props) => {
 
+    
 const captureGenreSelected = (e) => {
-    props.chosenState(e.target.value)
+    props.chosenGenre(e.target.value)
 }
-
-console.log(props)
 
     return (
         <div>
@@ -31,4 +30,4 @@ const mapStateToProps = (state) => {
   }
 
 
-export default connect(mapStateToProps, { chosenState })(GenreSelect)
+export default connect(mapStateToProps, { chosenGenre })(GenreSelect)
