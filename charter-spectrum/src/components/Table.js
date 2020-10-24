@@ -8,14 +8,13 @@ import GenreSelect from "./GenreSelect";
 
 const Table = (props) => {
     console.log("PROPS", props)
-    const [activePage, setActivePage] = useState(1)
+    // const [activePage, setActivePage] = useState(1)
     const [search, setSearch] = useState("")
-    const [genre, sortGenre] = useState(false)
+    // const [genre, sortGenre] = useState(false)
     // const [selectedState, setSelectedState] = useState("")
 
     const data = props.data
     let receivedData = data.sort((a, b) => a.name.localeCompare(b.name)) || null
-
 
     const filteredSearch = receivedData.filter(restuarant => {
         if (restuarant.name.includes(search)) {
@@ -30,6 +29,7 @@ const Table = (props) => {
         }
     })
 
+    
     let genresArray = []
     let genresFiltered = []
 
@@ -39,58 +39,34 @@ const Table = (props) => {
         genresArray.push(restaurant.genre)
         genresSplit = genresArray.join().split(',')
 
-      
-
         genresSplit.map(genre => {
             if (!genresFiltered.includes(genre)) {
                 genresFiltered.push(genre)
             }
-        //   console.log("genresFiltered", genresFiltered)
         })
     })
 
 
-    const genreMatch = receivedData.map(restaurant => {
+    const genreMatch = receivedData.filter(restaurant => {
         let genreArr = []
         let genre = []
 
         genreArr.push(restaurant.genre)
         genre = genreArr.join().split(',')
-        console.log("GENRE", genre)
 
         if (genre.includes(props.chosenGenre)) {
-            console.log.log("true")
-            // return restaurant
-        } else {
-            console.log("false")
+            return restaurant
         }
     })
 
-    console.log(genreMatch)
 
-
-
-
-
-    // const sortByGenre = () => {
-    //     sortGenre(true)
-
-    //     if (genre) {
-    //         receivedData = data.sort((a, b) => a.genre.localeCompare(b.genre))
-    //         console.log(receivedData)
-    //     }
+    // const trackPage = (e, val) => {
+    //     e.preventDefault()
+    //     setActivePage(val)
+    //     console.log("activepage", activePage)
     // }
 
 
-    const trackPage = (e, val) => {
-        e.preventDefault()
-        setActivePage(val)
-        console.log("activepage", activePage)
-    }
-
-
-
-    console.log("search", search.length)
     return (
         <div>
             <input onChange={(e) => setSearch(e.target.value)} />
@@ -101,7 +77,7 @@ const Table = (props) => {
                         <th className="cityFilter"><i className="fas fa-filter"></i></th>
                         <th className="State Filter"><StatesSelect /></th>
                         <th className="phoneFilter"><i className="fas fa-filter"></i></th>
-                        <th className="genreFilter"><GenreSelect data={genresFiltered}/></th>
+                        <th className="genreFilter"><GenreSelect data={genresFiltered} /></th>
                     </tr>
                     <tr>
                         <th>Name</th>
@@ -126,11 +102,28 @@ const Table = (props) => {
 
 
 
-                    {receivedData.map((restuarant, idx) => (
+                    {/* {receivedData.map((restuarant, idx) => (
                   <tr key={idx}>
                         <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
                     </tr>
-                ))}         
+                ))}          */}
+
+                    {genreMatch.length > 0
+
+                        ?
+                        genreMatch.map((restuarant, idx) => (
+                            <tr key={idx}>
+                                <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
+                            </tr>
+                        ))
+
+                        :
+                        receivedData.map((restuarant, idx) => (
+                            <tr key={idx}>
+                                <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
+                            </tr>
+                        ))
+                    }
 
 
                     {/* {props.chosenState.length > 0
