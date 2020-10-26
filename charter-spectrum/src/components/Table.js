@@ -16,7 +16,13 @@ const Table = (props) => {
 
 
     const filteredSearch = receivedData.filter(restuarant => {
-        if (restuarant.name.includes(search || restuarant.city.includes(search))) {
+        let genreArr = []
+        let genre = []
+
+        genreArr.push(restuarant.genre)
+        genre = genreArr.join().split(',').includes(search)
+
+        if (restuarant.name.includes(search) || restuarant.city.includes(search) || genreArr.join().split(',').includes(search)) {
             return restuarant
         }
     })
