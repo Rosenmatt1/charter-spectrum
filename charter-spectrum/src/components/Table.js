@@ -16,13 +16,6 @@ const Table = (props) => {
 
 
     const filteredSearch = receivedData.filter(restuarant => {
-        // let genreArr = []
-        // let genre = []
-
-        // // genreArr.push(restuarant.genre.split(','))
-        // // console.log("GenreArr", genreArr)
-        // // genre = genreArr.join().split(',').includes(search)
-
         if (restuarant.name.includes(search) || restuarant.city.includes(search) || restuarant.genre.split(',').includes(search)) {
             return restuarant
         }
@@ -64,13 +57,7 @@ const Table = (props) => {
 
 
     const genreMatch = receivedData.filter(restaurant => {
-        let genreArr = []
-        let genre = []
-
-        genreArr.push(restaurant.genre)
-        genre = genreArr.join().split(',')
-
-        if (genre.includes(props.chosenGenre)) {
+        if (restaurant.genre.includes(props.chosenGenre)) {
             return restaurant
         }
     })
@@ -104,7 +91,7 @@ const Table = (props) => {
                         <th>Genre</th>
                     </tr>
 
-                    {filteredSearch.length > 0
+                    {/* {filteredSearch.length > 0
                         ?
                         filteredSearch.map((restuarant, idx) => (
                             <tr key={idx}>
@@ -115,10 +102,10 @@ const Table = (props) => {
                             <tr key={idx}>
                                 <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
                             </tr>))
-                    }
+                    } */}
 
 
-                    {/* {genreMatch.length > 0
+                    {genreMatch.length > 0
                         ?
                         genreMatch.map((restuarant, idx) => (
                             <tr key={idx}>
@@ -131,7 +118,7 @@ const Table = (props) => {
                                 <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
                             </tr>
                         ))
-                    } */}
+                    }
 
 
                     {/* {props.chosenState.length > 0
