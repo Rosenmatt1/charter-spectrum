@@ -39,14 +39,11 @@ const Table = (props) => {
     })
 
 
-    let genresArray = []
     let genresFiltered = []
 
     const filteredGenre = receivedData.map(restaurant => {
         let genresSplit = []
-
-        genresArray.push(restaurant.genre)
-        genresSplit = genresArray.join().split(',')
+        genresSplit = restaurant.genre.split(',')
 
         genresSplit.map(genre => {
             if (!genresFiltered.includes(genre)) {
@@ -141,7 +138,7 @@ const Table = (props) => {
                     {(props.chosenState.length > 0 && filteredState.length === 0) && <NoStateDisplay />}
 
 
-                         {/* {receivedData.map((restuarant, idx) => (
+                    {/* {receivedData.map((restuarant, idx) => (
                   <tr key={idx}>
                         <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
                     </tr>
