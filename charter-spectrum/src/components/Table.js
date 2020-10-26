@@ -7,20 +7,29 @@ import GenreSelect from "./GenreSelect";
 
 
 const Table = (props) => {
-    console.log("PROPS", props)
-    // const [activePage, setActivePage] = useState(1)
+    const [activePage, setActivePage] = useState(1)
     const [search, setSearch] = useState("")
     // const [genre, sortGenre] = useState(false)
     // const [selectedState, setSelectedState] = useState("")
-
     const data = props.data
     let receivedData = data.sort((a, b) => a.name.localeCompare(b.name)) || null
 
+
     const filteredSearch = receivedData.filter(restuarant => {
-        if (restuarant.name.includes(search)) {
+        if (restuarant.name.includes(search || restuarant.city.includes(search))) {
             return restuarant
         }
     })
+
+    // const searchSubmit = () => {
+    //     console.log("Button Pressed")
+    //     filteredSearch = receivedData.filter(restuarant => {
+    //         if (restuarant.name.includes(search)) {
+    //             return restuarant
+    //         }
+    //     })
+    //     console.log("filteredSearch", filteredSearch)
+    // }
 
 
     const filteredState = receivedData.filter(restuarant => {
@@ -29,7 +38,7 @@ const Table = (props) => {
         }
     })
 
-    
+
     let genresArray = []
     let genresFiltered = []
 
@@ -60,16 +69,17 @@ const Table = (props) => {
     })
 
 
-    // const trackPage = (e, val) => {
-    //     e.preventDefault()
-    //     setActivePage(val)
-    //     console.log("activepage", activePage)
-    // }
+    const trackPage = (e, val) => {
+        e.preventDefault()
+        setActivePage(val)
+        console.log("activepage", activePage)
+    }
 
 
     return (
         <div>
             <input onChange={(e) => setSearch(e.target.value)} />
+            {/* <button onClick={() => searchSubmit()}>Button</button> */}
             <table className="gridtable" >
                 <tbody>
                     <tr>
@@ -87,7 +97,7 @@ const Table = (props) => {
                         <th>Genre</th>
                     </tr>
 
-                    {/* {search.length > 0
+                    {filteredSearch.length > 0
                         ?
                         filteredSearch.map((restuarant, idx) => (
                             <tr key={idx}>
@@ -98,32 +108,23 @@ const Table = (props) => {
                             <tr key={idx}>
                                 <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
                             </tr>))
-                    } */}
+                    }
 
 
-
-                    {/* {receivedData.map((restuarant, idx) => (
-                  <tr key={idx}>
-                        <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
-                    </tr>
-                ))}          */}
-
-                    {genreMatch.length > 0
-
+                    {/* {genreMatch.length > 0
                         ?
                         genreMatch.map((restuarant, idx) => (
                             <tr key={idx}>
                                 <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
                             </tr>
                         ))
-
                         :
                         receivedData.map((restuarant, idx) => (
                             <tr key={idx}>
                                 <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
                             </tr>
                         ))
-                    }
+                    } */}
 
 
                     {/* {props.chosenState.length > 0
@@ -144,6 +145,13 @@ const Table = (props) => {
                     } */}
 
                     {(props.chosenState.length > 0 && filteredState.length === 0) && <NoStateDisplay />}
+
+
+                         {/* {receivedData.map((restuarant, idx) => (
+                  <tr key={idx}>
+                        <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
+                    </tr>
+                ))}          */}
 
                 </tbody>
             </table >

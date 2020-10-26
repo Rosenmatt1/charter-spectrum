@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from "react";
-
-import Loading from './Loading';
-import Error from './Error';
 import Table from './components/Table';
 
 
@@ -29,9 +26,7 @@ const App = () => {
 
     return (
         <div id="root">
-
             <Table data={fetchedData} />
-
         </div>
     )
 };
