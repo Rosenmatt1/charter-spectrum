@@ -1,4 +1,5 @@
 
 export const CHOSEN_STATE = "CHOSEN_STATE"
 export const CHOSEN_GENRE = "CHOSEN_GENRE"
+export const STATE_ACTIVE = "STATE_ACTIVE"
 

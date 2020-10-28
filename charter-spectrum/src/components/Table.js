@@ -7,8 +7,9 @@ import GenreSelect from "./GenreSelect";
 
 
 const Table = (props) => {
+    console.log(props)
     const [activePage, setActivePage] = useState(1)
-    const [search, setSearch] = useState("")
+    const [search, setSearch] = useState(false)
     // const [genre, sortGenre] = useState(false)
     // const [selectedState, setSelectedState] = useState("")
     const data = props.data
