@@ -13,7 +13,7 @@ const Table = (props) => {
     // const [selectedState, setSelectedState] = useState("")
     const data = props.data
     let receivedData = data.sort((a, b) => a.name.localeCompare(b.name)) || null
-
+    // console.log(receivedData)
 
     const filteredSearch = receivedData.filter(restuarant => {
         if (restuarant.name.includes(search) || restuarant.city.includes(search) || restuarant.genre.split(',').includes(search)) {
@@ -127,7 +127,6 @@ const Table = (props) => {
                                 </tr>
                             )
                         })
-
                         :
                         receivedData.map((restuarant, idx) => (
                             <tr key={idx}>
@@ -146,7 +145,6 @@ const Table = (props) => {
 
                 </tbody>
             </table >
-
 
             <div class="pagination"  >
                 <a href="#">&laquo;</a>
