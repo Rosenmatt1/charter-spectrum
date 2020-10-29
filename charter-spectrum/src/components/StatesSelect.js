@@ -7,13 +7,19 @@ const StatesSelect = (props) => {
 
 const captureStateSelected = (e) => {
     props.chosenState(e.target.value)
-    props.stateActive(true)
+
+    if (e.target.value.length > 0) {
+        props.stateActive(true)
+    } else {
+        props.stateActive(false)
+    }
+    
 }
 
     return (
         <div>
             <select name="state" id="state" onChange={(e) => captureStateSelected(e)} >
-                <option value="" selected="selected">Select a State</option>
+                <option value="" selected="selected"> Select a State </option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>
