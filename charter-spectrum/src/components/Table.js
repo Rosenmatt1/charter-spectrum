@@ -9,8 +9,7 @@ import GenreSelect from "./GenreSelect";
 const Table = (props) => {
     console.log(props)
     const [activePage, setActivePage] = useState(1)
-    const [search, setSearch] = useState(false)
-    // const [genre, sortGenre] = useState(false)
+    const [search, setSearch] = useState("")
     const data = props.data
     let receivedData = data.sort((a, b) => a.name.localeCompare(b.name)) || null
 
@@ -30,6 +29,31 @@ const Table = (props) => {
     //     })
     //     console.log("filteredSearch", filteredSearch)
     // }
+
+    // const logic = () => {
+    //     if (props.chosenState.length > 0 && props.chosenGenre.length > 0 && search.length > 0) {
+
+    //         // if (restuarant.state === props.chosenState) {
+    //         //     return restuarant
+    //         // }
+
+    //         // if (restaurant.genre.includes(props.chosenGenre)) {
+    //         //     return restaurant
+    //         // }
+
+    //         // if (restuarant.name.includes(search) || restuarant.city.includes(search) || restuarant.genre.split(',').includes(search)) {
+    //         //     return restuarant
+    //         // }
+    //     }
+    // }
+
+    const logic = receivedData.filter(restuarant => {
+        if (props.chosenState.length > 0 && props.chosenGenre.length > 0 && search.length > 0) {
+            if (restuarant.state === props.chosenState) || (restuarant .genre.includes(props.chosenGenre)) && (restuarant.name.includes(search) || restuarant.city.includes(search) || restuarant.genre.split(',').includes(search)) {
+                return restuarant 
+            } 
+        }
+    })
 
 
     const filteredState = receivedData.filter(restuarant => {
@@ -65,7 +89,6 @@ const Table = (props) => {
         setActivePage(val)
         console.log("activepage", activePage)
     }
-
 
     return (
         <div>
@@ -139,10 +162,10 @@ const Table = (props) => {
                 </tbody>
             </table >
 
-            <div class="pagination"  >
+            <div className="pagination"  >
                 <a href="#">&laquo;</a>
                 <a href="#" onClick={(e) => trackPage(e, 1)} value={1} >1</a>
-                <a class="active" onClick={(e) => trackPage(e, 2)} value={2} href="#">2</a>
+                <a className="active" onClick={(e) => trackPage(e, 2)} value={2} href="#">2</a>
                 <a href="#" onClick={(e) => trackPage(e, 3)} value={3}>3</a>
                 <a href="#" onClick={(e) => trackPage(e, 4)} value={4}>4</a>
                 <a href="#" onClick={(e) => trackPage(e, 5)} value={5}>5</a>

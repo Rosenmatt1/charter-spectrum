@@ -13,7 +13,7 @@ const captureGenreSelected = (e) => {
     return (
         <div>
             <select name="state" id="state" onChange={(e) => captureGenreSelected(e)} >
-                <option value="" selected="selected">Select a Genre</option>
+                <option value="" defaultValue>Select a Genre</option>
                 {props.data.map(genre => {
                      return <option key={genre} value={genre}>{genre}</option>
                 })}

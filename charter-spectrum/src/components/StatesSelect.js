@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from 'react-redux';
 import { chosenState, stateActive } from '../redux/actions';
 
@@ -13,13 +13,12 @@ const captureStateSelected = (e) => {
     } else {
         props.stateActive(false)
     }
-    
 }
 
     return (
         <div>
             <select name="state" id="state" onChange={(e) => captureStateSelected(e)} >
-                <option value="" selected="selected"> Select a State </option>
+                <option value="" defaultValue> Select a State </option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>
@@ -78,8 +77,10 @@ const captureStateSelected = (e) => {
 
 
 const mapStateToProps = (state) => {
+    
     return {
-      ...state
+      ...state,
+      chosen: state.chosenState
     }
   }
 
