@@ -49,7 +49,7 @@ const Table = (props) => {
 
     const logic = receivedData.filter(restuarant => {
         if (props.chosenState.length > 0 && props.chosenGenre.length > 0 && search.length > 0) {
-            if (restuarant.state === props.chosenState) || (restuarant .genre.includes(props.chosenGenre)) && (restuarant.name.includes(search) || restuarant.city.includes(search) || restuarant.genre.split(',').includes(search)) {
+            if ((restuarant.state === props.chosenState) || (restuarant .genre.includes(props.chosenGenre)) && (restuarant.name.includes(search) || restuarant.city.includes(search) || restuarant.genre.split(',').includes(search))) {
                 return restuarant 
             } 
         }
@@ -111,6 +111,22 @@ const Table = (props) => {
                         <th>Genre</th>
                     </tr>
 
+                    {logic.length > 0
+                        ?
+                        logic.map((restuarant, idx) => (
+                            <tr key={idx}>
+                                <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
+                            </tr>
+                        ))
+                        :
+                        receivedData.map((restuarant, idx) => (
+                            <tr key={idx}>
+                                <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
+                            </tr>
+                        ))
+                    }
+
+
                     {/* {filteredSearch.length > 0
                         ?
                         filteredSearch.map((restuarant, idx) => (
@@ -125,7 +141,7 @@ const Table = (props) => {
                     } */}
 
 
-                    {genreMatch.length > 0
+                    {/* {genreMatch.length > 0
                         ?
                         genreMatch.map((restuarant, idx) => (
                             <tr key={idx}>
@@ -138,7 +154,7 @@ const Table = (props) => {
                                 <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
                             </tr>
                         ))
-                    }
+                    } */}
 
 
                     {/* {props.chosenState.length > 0
