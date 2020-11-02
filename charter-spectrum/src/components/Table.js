@@ -14,11 +14,11 @@ const Table = (props) => {
     let receivedData = data.sort((a, b) => a.name.localeCompare(b.name)) || null
 
 
-    const filteredSearch = receivedData.filter(restuarant => {
-        if (restuarant.name.includes(search) || restuarant.city.includes(search) || restuarant.genre.split(',').includes(search)) {
-            return restuarant
-        }
-    })
+    // const filteredSearch = receivedData.filter(restuarant => {
+    //     if (restuarant.name.includes(search) || restuarant.city.includes(search) || restuarant.genre.split(',').includes(search)) {
+    //         return restuarant
+    //     }
+    // })
 
     // const searchSubmit = () => {
     //     console.log("Button Pressed")
@@ -62,11 +62,11 @@ const Table = (props) => {
     })
 
 
-    const genreMatch = receivedData.filter(restaurant => {
-        if (restaurant.genre.includes(props.chosenGenre)) {
-            return restaurant
-        }
-    })
+    // const genreMatch = receivedData.filter(restaurant => {
+    //     if (restaurant.genre.includes(props.chosenGenre)) {
+    //         return restaurant
+    //     }
+    // })
 
 
     const trackPage = (e, val) => {
