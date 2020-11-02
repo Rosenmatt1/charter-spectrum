@@ -49,7 +49,7 @@ const Table = (props) => {
 
     const logic = receivedData.filter(restuarant => {
         if (props.chosenState.length > 0 && props.chosenGenre.length > 0 && search.length > 0) {
-            if ((restuarant.state === props.chosenState) || (restuarant .genre.includes(props.chosenGenre)) && (restuarant.name.includes(search) || restuarant.city.includes(search) || restuarant.genre.split(',').includes(search))) {
+            if ((restuarant.state === props.chosenState) && (restuarant.genre.includes(props.chosenGenre)) && (restuarant.name.toLowerCase().includes(search.toLowerCase()) || restuarant.city.toLowerCase().includes(search.toLowerCase()) || restuarant.genre.toLowerCase().split(',').includes(search.toLowerCase()))) {
                 return restuarant 
             } 
         }
@@ -89,6 +89,8 @@ const Table = (props) => {
         setActivePage(val)
         console.log("activepage", activePage)
     }
+
+    console.log("logic", logic)
 
     return (
         <div>
