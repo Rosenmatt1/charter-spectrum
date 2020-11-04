@@ -14,24 +14,6 @@ const Table = (props) => {
     let receivedData = data.sort((a, b) => a.name.localeCompare(b.name)) || null
 
 
-    // const filteredSearch = receivedData.filter(restuarant => {
-    //     if (restuarant.name.includes(search) || restuarant.city.includes(search) || restuarant.genre.split(',').includes(search)) {
-    //         return restuarant
-    //     }
-    // })
-
-    // const searchSubmit = () => {
-    //     console.log("Button Pressed")
-    //     filteredSearch = receivedData.filter(restuarant => {
-    //         if (restuarant.name.includes(search)) {
-    //             return restuarant
-    //         }
-    //     })
-    //     console.log("filteredSearch", filteredSearch)
-    // }
-
-
-
     const logic = receivedData.filter(restuarant => {
         if (props.chosenState.length > 0 || props.chosenGenre.length > 0 || search.length > 0) {
             if ((restuarant.state === props.chosenState) && (restuarant.genre.includes(props.chosenGenre)) && (restuarant.name.toLowerCase().includes(search.toLowerCase()) || restuarant.city.toLowerCase().includes(search.toLowerCase()) || restuarant.genre.toLowerCase().split(',').includes(search.toLowerCase()))) {
@@ -62,20 +44,12 @@ const Table = (props) => {
     })
 
 
-    // const genreMatch = receivedData.filter(restaurant => {
-    //     if (restaurant.genre.includes(props.chosenGenre)) {
-    //         return restaurant
-    //     }
-    // })
-
-
     const trackPage = (e, val) => {
         e.preventDefault()
         setActivePage(val)
         console.log("activepage", activePage)
     }
 
-    console.log("logic", logic)
 
     return (
         <div>
@@ -112,53 +86,6 @@ const Table = (props) => {
                             </tr>
                         ))
                     }
-
-
-                    {/* {filteredSearch.length > 0
-                        ?
-                        filteredSearch.map((restuarant, idx) => (
-                            <tr key={idx}>
-                                <th> {restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
-                            </tr>))
-                        :
-                        receivedData.map((restuarant, idx) => (
-                            <tr key={idx}>
-                                <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
-                            </tr>))
-                    } */}
-
-
-                    {/* {genreMatch.length > 0
-                        ?
-                        genreMatch.map((restuarant, idx) => (
-                            <tr key={idx}>
-                                <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
-                            </tr>
-                        ))
-                        :
-                        receivedData.map((restuarant, idx) => (
-                            <tr key={idx}>
-                                <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
-                            </tr>
-                        ))
-                    } */}
-
-
-                    {/* {props.chosenState.length > 0
-                        ?
-                        filteredState.map((restuarant, idx) => {
-                            return (
-                                <tr key={idx}>
-                                    <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
-                                </tr>
-                            )
-                        })
-                        :
-                        receivedData.map((restuarant, idx) => (
-                            <tr key={idx}>
-                                <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
-                            </tr>))
-                    } */}
 
                     {(props.chosenState.length > 0 && filteredState.length === 0) && <NoStateDisplay />}
 
