@@ -17,8 +17,8 @@ const Table = (props) => {
     const logic = receivedData.filter(restuarant => {
         if (props.chosenState.length > 0 || props.chosenGenre.length > 0 || search.length > 0) {
             if ((restuarant.state === props.chosenState) && (restuarant.genre.includes(props.chosenGenre)) && (restuarant.name.toLowerCase().includes(search.toLowerCase()) || restuarant.city.toLowerCase().includes(search.toLowerCase()) || restuarant.genre.toLowerCase().split(',').includes(search.toLowerCase()))) {
-                return restuarant 
-            } 
+                return restuarant
+            }
         }
     })
 
@@ -80,14 +80,18 @@ const Table = (props) => {
                             </tr>
                         ))
                         :
-                        receivedData.map((restuarant, idx) => (
-                            <tr key={idx}>
-                                <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
-                            </tr>
-                        ))
+                        (props.chosenState.length > 0 && filteredState.length === 0)
+                            ?
+                            <NoStateDisplay />
+                            :
+                            receivedData.map((restuarant, idx) => (
+                                <tr key={idx}>
+                                    <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
+                                </tr>
+                            ))
                     }
 
-                    {(props.chosenState.length > 0 && filteredState.length === 0) && <NoStateDisplay />}
+                    {/* {(props.chosenState.length > 0 && filteredState.length === 0) && <NoStateDisplay />} */}
 
                 </tbody>
             </table >
