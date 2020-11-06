@@ -8,7 +8,9 @@ import GenreSelect from "./GenreSelect";
 
 const Table = (props) => {
     console.log(props)
-    const [activePage, setActivePage] = useState(1)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [loading, setLoading] = useState(false)
+    const [postsPerPage, setPostsPerPage] = useState(10)
     const [search, setSearch] = useState("")
     const data = props.data
     let receivedData = data.sort((a, b) => a.name.localeCompare(b.name)) || null
