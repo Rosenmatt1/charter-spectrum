@@ -47,11 +47,12 @@ const Table = (props) => {
 
 
     const trackPage = (e, val) => {
-        e.preventDefault()
-        setActivePage(val)
-        console.log("activepage", activePage)
+      
     }
 
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = receivedData.slice(indexOfFirstPost, indexOfLastPost);
 
     return (
         <div>
@@ -86,7 +87,7 @@ const Table = (props) => {
                             ?
                             <NoStateDisplay />
                             :
-                            receivedData.map((restuarant, idx) => (
+                            currentPosts.map((restuarant, idx) => (
                                 <tr key={idx}>
                                     <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
                                 </tr>
