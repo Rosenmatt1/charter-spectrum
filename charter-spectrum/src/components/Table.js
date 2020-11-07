@@ -4,6 +4,7 @@ import StatesSelect from './StatesSelect';
 import NoStateDisplay from './NoStateDisplay';
 import { connect } from 'react-redux';
 import GenreSelect from "./GenreSelect";
+import Pagination from "./Pagination";
 
 
 const Table = (props) => {
@@ -45,10 +46,6 @@ const Table = (props) => {
         })
     })
 
-
-    const trackPage = (e, val) => {
-      
-    }
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -99,16 +96,7 @@ const Table = (props) => {
                 </tbody>
             </table >
 
-            <div className="pagination"  >
-                <a href="#">&laquo;</a>
-                <a href="#" onClick={(e) => trackPage(e, 1)} value={1} >1</a>
-                <a className="active" onClick={(e) => trackPage(e, 2)} value={2} href="#">2</a>
-                <a href="#" onClick={(e) => trackPage(e, 3)} value={3}>3</a>
-                <a href="#" onClick={(e) => trackPage(e, 4)} value={4}>4</a>
-                <a href="#" onClick={(e) => trackPage(e, 5)} value={5}>5</a>
-                <a href="#" onClick={(e) => trackPage(e, 6)} value={6}>6</a>
-                <a href="#" >&raquo;</a>
-            </div>
+           <Pagination postsPerPage={postsPerPage} totalPosts={receivedData.length}/>
 
         </div >
     )
