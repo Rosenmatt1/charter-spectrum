@@ -8,10 +8,9 @@ import Pagination from "./Pagination";
 
 
 const Table = (props) => {
-    console.log(props)
     const [currentPage, setCurrentPage] = useState(1)
     const [loading, setLoading] = useState(false)
-    const [postsPerPage, setPostsPerPage] = useState(10)
+    const [postsPerPage] = useState(10)
     const [search, setSearch] = useState("")
     const data = props.data
     let receivedData = data.sort((a, b) => a.name.localeCompare(b.name)) || null
@@ -50,6 +49,8 @@ const Table = (props) => {
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = receivedData.slice(indexOfFirstPost, indexOfLastPost);
+
+    const paginate = pageNumber => setCurrentPage(pageNumber);
 
     return (
         <div>
@@ -96,7 +97,7 @@ const Table = (props) => {
                 </tbody>
             </table >
 
-           <Pagination postsPerPage={postsPerPage} totalPosts={receivedData.length}/>
+           <Pagination postsPerPage={postsPerPage} totalPosts={receivedData.length} paginate={paginate}/>
 
         </div >
     )
