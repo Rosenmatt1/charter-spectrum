@@ -97,8 +97,7 @@ const Table = (props) => {
                 </tbody>
             </table >
 
-           <Pagination postsPerPage={postsPerPage} totalPosts={receivedData.length} paginate={paginate}/>
-
+           <Pagination postsPerPage={postsPerPage} currentPage={currentPage} logic={logic} totalPosts={receivedData.length} paginate={paginate}/>
         </div >
     )
 };

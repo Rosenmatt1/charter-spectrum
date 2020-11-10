@@ -1,22 +1,24 @@
 import React from 'react'
 
-const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
+const Pagination = ({ postsPerPage, currentPage, logic, totalPosts, paginate }) => {
     const pageNumbers = [];
 
     for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
         pageNumbers.push(i)
     }
 
+   // let trueOrFalse = logic.length > 0 && number === currentPage
+                        // console.log(trueOrFalse)
+
     return (
-        <div>
             <div className="pagination">
-                <a href="#">&laquo;</a>
+                {/* <a>&laquo;</a> */}
                 {pageNumbers.map(number => (
-                    <a href="!#" key={number} onClick={() => paginate(number)}> {number}</a>
+                     
+                    <a key={number} className={number === currentPage ? "active" : 1} onClick={() => paginate(number)}> {number}</a>
                 ))}
-                <a href="#" >&raquo;</a>
+                {/* <a>&raquo;</a> */}
             </div>
-        </div>
     )
 }
 

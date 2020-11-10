@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Table from './components/Table';
+import styles from './styles.css';
 
 
 const App = () => {
@@ -25,7 +26,7 @@ const App = () => {
 
 
     return (
-        <div id="root">
+        <div id="root" className="center">
             <Table data={fetchedData} />
         </div>
     )
