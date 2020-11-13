@@ -18,21 +18,31 @@ const Table = (props) => {
 //logic is only returning restaurant if a state is chosen first.  It is not returning restaurant if search or genre is chosen first
     const logic = receivedData.filter(restuarant => {
         if (props.chosenState.length > 0 || props.chosenGenre.length > 0 || search.length > 0) {
-            
+
             let stateActivated = restuarant.state === props.chosenState
             let genreActivated = restuarant.genre.includes(props.chosenGenre)
             let searchActivated = (restuarant.name.toLowerCase().includes(search.toLowerCase()) || restuarant.city.toLowerCase().includes(search.toLowerCase()) || restuarant.genre.toLowerCase().split(',').includes(search.toLowerCase()))
-            console.log("stateActivated", stateActivated)
-            console.log("genreActivated", genreActivated)
-            console.log("searchActivated", searchActivated)
+            // console.log("stateActivated", stateActivated)
+            // console.log("genreActivated", genreActivated)
+            // console.log("searchActivated", searchActivated)
 
-            if (stateActivated || genreActivated || searchActivated) {
+            let searchName = restuarant.name.toLowerCase().includes(search.toLowerCase());
+            let searchCity = restuarant.city.toLowerCase().includes(search.toLowerCase());
+            let searchGenre = restuarant.genre.toLowerCase().split(',').includes(search.toLowerCase())
+            console.log("searchName", searchName)
+            console.log("searchCity", searchCity)
+            console.log("searchGenre", searchGenre)
+            console.log("next")
+
+            if (stateActivated && genreActivated && searchActivated) {
                 console.log("logic returned restuarant!")
                 return restuarant
             }
         }
     })
 
+    console.log("LENGTH", logic.length)
+    console.log("search", search)
 
     const filteredState = receivedData.filter(restuarant => {
         if (restuarant.state === props.chosenState) {
