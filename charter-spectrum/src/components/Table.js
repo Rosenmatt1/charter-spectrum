@@ -11,30 +11,35 @@ const Table = (props) => {
     const [currentPage, setCurrentPage] = useState(1)
     const [loading, setLoading] = useState(false)
     const [postsPerPage] = useState(10)
-    const [search, setSearch] = useState("")
+    const [search, setSearch] = useState(null)
     const data = props.data
     let receivedData = data.sort((a, b) => a.name.localeCompare(b.name)) || null
 
-//logic is only returning restaurant if a state is chosen first.  It is not returning restaurant if search or genre is chosen first
+    //logic is only returning restaurant if a state is chosen first.  It is not returning restaurant if search or genre is chosen first
     const logic = receivedData.filter(restuarant => {
-        if (props.chosenState.length > 0 || props.chosenGenre.length > 0 || search.length > 0) {
 
+        if (props.chosenState.length > 0 || props.chosenGenre.length > 0 || search) {
             let stateActivated = restuarant.state === props.chosenState
             let genreActivated = restuarant.genre.includes(props.chosenGenre)
-            let searchActivated = (restuarant.name.toLowerCase().includes(search.toLowerCase()) || restuarant.city.toLowerCase().includes(search.toLowerCase()) || restuarant.genre.toLowerCase().split(',').includes(search.toLowerCase()))
-            // console.log("stateActivated", stateActivated)
-            // console.log("genreActivated", genreActivated)
-            // console.log("searchActivated", searchActivated)
+            if (search) {
+                let searchActivated = (restuarant.name.toLowerCase().includes(search.toLowerCase()) || restuarant.city.toLowerCase().includes(search.toLowerCase()) || restuarant.genre.toLowerCase().split(',').includes(search.toLowerCase()))
+                // console.log("stateActivated", stateActivated)
+                // console.log("genreActivated", genreActivated)
+                // console.log("searchActivated", searchActivated)
+            }
 
-            let searchName = restuarant.name.toLowerCase().includes(search.toLowerCase());
-            let searchCity = restuarant.city.toLowerCase().includes(search.toLowerCase());
-            let searchGenre = restuarant.genre.toLowerCase().split(',').includes(search.toLowerCase())
-            console.log("searchName", searchName)
-            console.log("searchCity", searchCity)
-            console.log("searchGenre", searchGenre)
-            console.log("next")
+            if (search) {
+                let searchName = restuarant.name.toLowerCase().includes(search.toLowerCase());
+                let searchCity = restuarant.city.toLowerCase().includes(search.toLowerCase());
+                let searchGenre = restuarant.genre.toLowerCase().split(',').includes(search.toLowerCase())
+                console.log("searchName", searchName)
+                console.log("searchCity", searchCity)
+                console.log("searchGenre", searchGenre)
+                console.log("next")
+            }
 
-            if (stateActivated && genreActivated && searchActivated) {
+
+            if (stateActivated || genreActivated) {
                 console.log("logic returned restuarant!")
                 return restuarant
             }
@@ -116,7 +121,7 @@ const Table = (props) => {
                 </tbody>
             </table >
 
-           <Pagination postsPerPage={postsPerPage} currentPage={currentPage} logic={logic} totalPosts={receivedData.length} paginate={paginate}/>
+            <Pagination postsPerPage={postsPerPage} currentPage={currentPage} logic={logic} totalPosts={receivedData.length} paginate={paginate} />
         </div >
     )
 };
