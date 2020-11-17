@@ -18,18 +18,24 @@ const Table = (props) => {
     const logic = receivedData.filter(restuarant => {
         let searchActivated = null
         let genreActivated = null
+        let stateActivated = null
 
         if (search) {
             searchActivated = (restuarant.name.toLowerCase().includes(search.toLowerCase()) || restuarant.city.toLowerCase().includes(search.toLowerCase()) || restuarant.genre.toLowerCase().split(',').includes(search.toLowerCase()))
+            console.log("searchActivated", searchActivated)
         }
 
         if (props.chosenGenre.length > 0) {
             genreActivated = restuarant.genre.includes(props.chosenGenre)
+            console.log("genreActivated", genreActivated)
+        }
+
+        if (props.chosenState.length > 0) {
+            let stateActivated = restuarant.state === props.chosenState
+            console.log("stateActivated", stateActivated)
         }
 
         if (props.chosenState.length > 0 || props.chosenGenre.length > 0 || search) {
-            let stateActivated = restuarant.state === props.chosenState
-
             if (stateActivated && genreActivated && searchActivated) {
                 console.log("logic returned && restuarant!")
                 return restuarant
@@ -43,17 +49,12 @@ const Table = (props) => {
                 console.log("logic returned || restuarant!")
                 return restuarant
             }
-
         }
 
     })
 
     console.log("LENGTH", logic.length)
-    console.log("search", search)
-
-    // console.log("stateActivated", stateActivated)
-    // console.log("genreActivated", genreActivated)
-    // console.log("searchActivated", searchActivated)
+    console.log("search", Boolean(search))
 
     // let searchName = restuarant.name.toLowerCase().includes(search.toLowerCase());
     // let searchCity = restuarant.city.toLowerCase().includes(search.toLowerCase());
