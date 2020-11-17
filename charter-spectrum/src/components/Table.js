@@ -31,30 +31,31 @@ const Table = (props) => {
         }
 
         if (props.chosenState.length > 0) {
-            let stateActivated = restuarant.state === props.chosenState
+            stateActivated = restuarant.state === props.chosenState
             console.log("stateActivated", stateActivated)
         }
 
-        if (props.chosenState.length > 0 || props.chosenGenre.length > 0 || search) {
-            if (stateActivated && genreActivated && searchActivated) {
-                console.log("logic returned && restuarant!")
-                return restuarant
-            } else if (stateActivated || genreActivated && searchActivated) {
-                console.log("logic returned |& restuarant!")
-                return restuarant
-            } else if (stateActivated && genreActivated || searchActivated) {
-                console.log("logic returned &| restuarant!")
-                return restuarant
-            } else if (stateActivated || genreActivated || searchActivated) {
-                console.log("logic returned || restuarant!")
-                return restuarant
-            }
-        }
-
+        if ( searchActivated || stateActivated || genreActivated  ) return restuarant
     })
 
     console.log("LENGTH", logic.length)
     console.log("search", Boolean(search))
+
+    // if (props.chosenState.length > 0 || props.chosenGenre.length > 0 || search) {
+    //     if (stateActivated && genreActivated && searchActivated) {
+    //         console.log("logic returned && restuarant!")
+    //         return restuarant
+    //     } else if (stateActivated || genreActivated && searchActivated) {
+    //         console.log("logic returned |& restuarant!")
+    //         return restuarant
+    //     } else if (stateActivated && genreActivated || searchActivated) {
+    //         console.log("logic returned &| restuarant!")
+    //         return restuarant
+    //     } else if (stateActivated || genreActivated || searchActivated) {
+    //         console.log("logic returned || restuarant!")
+    //         return restuarant
+    //     }
+    // }
 
     // let searchName = restuarant.name.toLowerCase().includes(search.toLowerCase());
     // let searchCity = restuarant.city.toLowerCase().includes(search.toLowerCase());
