@@ -16,9 +16,9 @@ const Table = (props) => {
     let receivedData = data.sort((a, b) => a.name.localeCompare(b.name)) || null
 
     const logic = receivedData.filter(restuarant => {
-        let searchActivated = null
-        let genreActivated = null
-        let stateActivated = null
+        let searchActivated = true
+        let genreActivated = true
+        let stateActivated = true
 
         if (search) {
             searchActivated = (restuarant.name.toLowerCase().includes(search.toLowerCase()) || restuarant.city.toLowerCase().includes(search.toLowerCase()) || restuarant.genre.toLowerCase().split(',').includes(search.toLowerCase()))
@@ -35,26 +35,25 @@ const Table = (props) => {
             console.log("stateActivated", stateActivated)
         }
 
-        // if ( searchActivated || stateActivated || genreActivated  ) return restuarant
+        if ( searchActivated && stateActivated && genreActivated  ) return restuarant
 
-   
-                if (stateActivated || genreActivated || searchActivated) {
-                    console.log("logic returned && restuarant!")
-                    return restuarant
-                } else if (!stateActivated && genreActivated && searchActivated) {
-                    console.log("logic returned |& restuarant!")
-                    return restuarant
-                } else if (stateActivated && !genreActivated && searchActivated) {
-                    console.log("logic returned &| restuarant!")
-                    return restuarant
-                } else if (stateActivated && genreActivated && !searchActivated) {
-                    console.log("logic returned !| restuarant!")
-                    return restuarant
-                } else if (stateActivated && genreActivated && searchActivated) {
-                    console.log("logic returned || restuarant!")
-                    return restuarant
-                }
 
+        // if (stateActivated || genreActivated || searchActivated) {
+        //     console.log("logic returned && restuarant!")
+        //     return restuarant
+        // } else if (!stateActivated && genreActivated && searchActivated) {
+        //     console.log("logic returned |& restuarant!")
+        //     return restuarant
+        // } else if (stateActivated && !genreActivated && searchActivated) {
+        //     console.log("logic returned &| restuarant!")
+        //     return restuarant
+        // } else if (stateActivated && genreActivated && !searchActivated) {
+        //     console.log("logic returned !| restuarant!")
+        //     return restuarant
+        // } else if (stateActivated && genreActivated && searchActivated) {
+        //     console.log("logic returned || restuarant!")
+        //     return restuarant
+        // }
 
     })
 
@@ -140,19 +139,17 @@ const Table = (props) => {
                                 <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
                             </tr>
                         ))
-                        :
-                        (props.chosenState.length > 0 && filteredState.length === 0)
-                            ?
-                            <NoStateDisplay />
-                            :
-                            currentPosts.map((restuarant, idx) => (
-                                <tr key={idx}>
-                                    <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
-                                </tr>
-                            ))
+                        :<div></div>
+                        
+                            
+                           
                     }
 
                     {/* {(props.chosenState.length > 0 && filteredState.length === 0) && <NoStateDisplay />} */}
+
+                    {/* (props.chosenState.length > 0 && filteredState.length === 0)
+                            ?
+                            <NoStateDisplay /> */}
 
                 </tbody>
             </table >
