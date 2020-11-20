@@ -1,5 +1,10 @@
 .center {
+	width: 100%;
 	min-height: 100vh;
+	background: #c850c0;
+	background: -webkit-linear-gradient(45deg, #4158d0, #c850c0);
+	background: -moz-linear-gradient(45deg, #4158d0, #c850c0);
+	background: linear-gradient(45deg, #4158d0, #c850c0);
 	display: flex;
 	justify-content: center;
 	align-items: center;

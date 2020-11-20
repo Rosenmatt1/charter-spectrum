@@ -35,7 +35,27 @@ const Table = (props) => {
             console.log("stateActivated", stateActivated)
         }
 
-        if ( searchActivated || stateActivated || genreActivated  ) return restuarant
+        // if ( searchActivated || stateActivated || genreActivated  ) return restuarant
+
+   
+                if (stateActivated || genreActivated || searchActivated) {
+                    console.log("logic returned && restuarant!")
+                    return restuarant
+                } else if (!stateActivated && genreActivated && searchActivated) {
+                    console.log("logic returned |& restuarant!")
+                    return restuarant
+                } else if (stateActivated && !genreActivated && searchActivated) {
+                    console.log("logic returned &| restuarant!")
+                    return restuarant
+                } else if (stateActivated && genreActivated && !searchActivated) {
+                    console.log("logic returned !| restuarant!")
+                    return restuarant
+                } else if (stateActivated && genreActivated && searchActivated) {
+                    console.log("logic returned || restuarant!")
+                    return restuarant
+                }
+
+
     })
 
     console.log("LENGTH", logic.length)
