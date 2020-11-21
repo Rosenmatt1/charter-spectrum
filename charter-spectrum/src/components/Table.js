@@ -36,53 +36,10 @@ const Table = (props) => {
         }
 
         if ( searchActivated && stateActivated && genreActivated  ) return restuarant
-
-
-        // if (stateActivated || genreActivated || searchActivated) {
-        //     console.log("logic returned && restuarant!")
-        //     return restuarant
-        // } else if (!stateActivated && genreActivated && searchActivated) {
-        //     console.log("logic returned |& restuarant!")
-        //     return restuarant
-        // } else if (stateActivated && !genreActivated && searchActivated) {
-        //     console.log("logic returned &| restuarant!")
-        //     return restuarant
-        // } else if (stateActivated && genreActivated && !searchActivated) {
-        //     console.log("logic returned !| restuarant!")
-        //     return restuarant
-        // } else if (stateActivated && genreActivated && searchActivated) {
-        //     console.log("logic returned || restuarant!")
-        //     return restuarant
-        // }
-
     })
 
     console.log("LENGTH", logic.length)
-    console.log("search", Boolean(search))
 
-    // if (props.chosenState.length > 0 || props.chosenGenre.length > 0 || search) {
-    //     if (stateActivated && genreActivated && searchActivated) {
-    //         console.log("logic returned && restuarant!")
-    //         return restuarant
-    //     } else if (stateActivated || genreActivated && searchActivated) {
-    //         console.log("logic returned |& restuarant!")
-    //         return restuarant
-    //     } else if (stateActivated && genreActivated || searchActivated) {
-    //         console.log("logic returned &| restuarant!")
-    //         return restuarant
-    //     } else if (stateActivated || genreActivated || searchActivated) {
-    //         console.log("logic returned || restuarant!")
-    //         return restuarant
-    //     }
-    // }
-
-    // let searchName = restuarant.name.toLowerCase().includes(search.toLowerCase());
-    // let searchCity = restuarant.city.toLowerCase().includes(search.toLowerCase());
-    // let searchGenre = restuarant.genre.toLowerCase().split(',').includes(search.toLowerCase())
-    // console.log("searchName", searchName)
-    // console.log("searchCity", searchCity)
-    // console.log("searchGenre", searchGenre)
-    // console.log("next")
 
     const filteredState = receivedData.filter(restuarant => {
         if (restuarant.state === props.chosenState) {
