@@ -7,19 +7,13 @@ const Pagination = ({ postsPerPage, currentPage, logic, totalPosts, paginate }) 
         pageNumbers.push(i)
     }
 
-//    let trueOrFalse = logic.length > 0 && number === currentPage
-
-//Is turning them all to "active" if true
-   let trueOrFalse = logic.length < 10 && logic.length !== 0; 
-    // console.log("trueOrFalse", trueOrFalse)
-    // console.log("currentPage", currentPage)
-
+    if ( logic.length < 10 ) paginate(1)
+    
     return (
             <div className="pagination">
-                {/* <a>&laquo;</a> */}
+                <a >&laquo;</a>
                 {pageNumbers.map(number => (
-                     
-                    <a key={number} className={ trueOrFalse ? "active" : number === currentPage  ? "active" : "nonactive" } onClick={() => paginate(number)}> {number}</a>
+                    <a key={number} className={ number === currentPage  ? "active" : "nonactive" } onClick={() => paginate(number)}> {number}</a>
                 ))}
                 {/* <a>&raquo;</a> */}
             </div>

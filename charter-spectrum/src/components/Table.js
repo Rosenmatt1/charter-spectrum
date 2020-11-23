@@ -12,8 +12,10 @@ const Table = (props) => {
     const [loading, setLoading] = useState(false)
     const [postsPerPage] = useState(10)
     const [search, setSearch] = useState(null)
+    // const [activeFilterOn, setActiveFilterOn] = useState(false)
     const data = props.data
     let receivedData = data.sort((a, b) => a.name.localeCompare(b.name)) || null
+
 
     const logic = receivedData.filter(restuarant => {
         let searchActivated = true
@@ -22,17 +24,14 @@ const Table = (props) => {
 
         if (search) {
             searchActivated = (restuarant.name.toLowerCase().includes(search.toLowerCase()) || restuarant.city.toLowerCase().includes(search.toLowerCase()) || restuarant.genre.toLowerCase().split(',').includes(search.toLowerCase()))
-            console.log("searchActivated", searchActivated)
         }
 
         if (props.chosenGenre.length > 0) {
             genreActivated = restuarant.genre.includes(props.chosenGenre)
-            console.log("genreActivated", genreActivated)
         }
 
         if (props.chosenState.length > 0) {
             stateActivated = restuarant.state === props.chosenState
-            console.log("stateActivated", stateActivated)
         }
 
         if (searchActivated && stateActivated && genreActivated) return restuarant
@@ -70,17 +69,17 @@ const Table = (props) => {
 
     return (
         <div>
-            <input onChange={(e) => setSearch(e.target.value)} />
+            <input onChange={(e) => setSearch(e.target.value)} placeholder="search city, state, or genre"/>
             {/* <button onClick={() => searchSubmit()}>Button</button> */}
 
             <table className="gridtable" >
                 <tbody>
                     <tr>
-                        <th className="nameFilter"><i className="fas fa-filter"></i></th>
-                        <th className="cityFilter"><i className="fas fa-filter"></i></th>
-                        <th className="State Filter"><StatesSelect /></th>
-                        <th className="phoneFilter"><i className="fas fa-filter"></i></th>
-                        <th className="genreFilter"><GenreSelect data={genresFiltered} /></th>
+                        <th className="nameFilter"> </th>
+                        <th className="cityFilter"> </th>
+                        <th className="State Filter"> <StatesSelect /></th>
+                        <th className="phoneFilter"> </th>
+                        <th className="genreFilter"> <GenreSelect data={genresFiltered} /> </th>
                     </tr>
                     <tr>
                         <th>Name</th>
