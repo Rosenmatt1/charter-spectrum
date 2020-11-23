@@ -35,7 +35,7 @@ const Table = (props) => {
             console.log("stateActivated", stateActivated)
         }
 
-        if ( searchActivated && stateActivated && genreActivated  ) return restuarant
+        if (searchActivated && stateActivated && genreActivated) return restuarant
     })
 
     console.log("LENGTH", logic.length)
@@ -64,7 +64,7 @@ const Table = (props) => {
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = receivedData.slice(indexOfFirstPost, indexOfLastPost);
+    const currentPosts = logic.slice(indexOfFirstPost, indexOfLastPost);
 
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
@@ -72,6 +72,7 @@ const Table = (props) => {
         <div>
             <input onChange={(e) => setSearch(e.target.value)} />
             {/* <button onClick={() => searchSubmit()}>Button</button> */}
+
             <table className="gridtable" >
                 <tbody>
                     <tr>
@@ -89,27 +90,16 @@ const Table = (props) => {
                         <th>Genre</th>
                     </tr>
 
-                    {logic.length > 0
-                        ?
-                        logic.map((restuarant, idx) => (
-                            <tr key={idx}>
-                                <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
-                            </tr>
-                        ))
-                        :<div></div>
-                        
-                            
-                           
-                    }
-
-                    {/* {(props.chosenState.length > 0 && filteredState.length === 0) && <NoStateDisplay />} */}
-
-                    {/* (props.chosenState.length > 0 && filteredState.length === 0)
-                            ?
-                            <NoStateDisplay /> */}
+                    {currentPosts.map((restuarant, idx) => (
+                        <tr key={idx}>
+                            <th>{restuarant.name}</th><th>{restuarant.city}</th><th>{restuarant.state}</th><th>{restuarant.telephone}</th><th>{restuarant.genre}</th>
+                        </tr>
+                    ))}
 
                 </tbody>
             </table >
+
+            { (props.chosenState.length > 0 && filteredState.length === 0) && <NoStateDisplay /> }
 
             <Pagination postsPerPage={postsPerPage} currentPage={currentPage} logic={logic} totalPosts={receivedData.length} paginate={paginate} />
         </div >
