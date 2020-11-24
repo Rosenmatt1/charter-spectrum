@@ -48,6 +48,18 @@ tbody tr {
 	/* padding: 1rem; */
 }
 
+.cityFilter {
+	min-width: 150px;
+}
+
+.nameFilter {
+	min-width: 250px;
+}
+
+.genreFilter {
+	min-width: 400px;
+}
+
 .pagination {
     display: inline-block;
   }

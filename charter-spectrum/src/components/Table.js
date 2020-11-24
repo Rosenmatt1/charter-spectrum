@@ -69,7 +69,7 @@ const Table = (props) => {
 
     return (
         <div>
-            <input onChange={(e) => setSearch(e.target.value)} placeholder="search city, state, or genre"/>
+            <input onChange={(e) => setSearch(e.target.value)} placeholder="search by city, state, or genre"/>
             {/* <button onClick={() => searchSubmit()}>Button</button> */}
 
             <table className="gridtable" >

@@ -11,11 +11,11 @@ const Pagination = ({ postsPerPage, currentPage, logic, totalPosts, paginate }) 
     
     return (
             <div className="pagination">
-                <a >&laquo;</a>
+                {/* <a onClick={() => paginate(1)}> &laquo; </a> */}
                 {pageNumbers.map(number => (
                     <a key={number} className={ number === currentPage  ? "active" : "nonactive" } onClick={() => paginate(number)}> {number}</a>
                 ))}
-                {/* <a>&raquo;</a> */}
+                {/* <a onClick={() => paginate(4)}>&raquo;</a> */}
             </div>
     )
 }
