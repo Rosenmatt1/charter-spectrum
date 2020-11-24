@@ -1,4 +1,4 @@
-[
+const jsonData = [
     {
         "id": "651628a1-9cea-4755-ac68-eaed5a0bb188",
         "name": "A Chef's Kitchen",
@@ -608,3 +608,5 @@
         "attire": "smart casual"
     }
 ]
+
+export default jsonData

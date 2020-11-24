@@ -2,19 +2,21 @@ import React, { useState, useEffect } from "react";
 import styles from '../styles.css';
 import StatesSelect from './StatesSelect';
 import NoStateDisplay from './NoStateDisplay';
+import NoResultsDisplay from './NoResultsDisplay';
+import jsonData from './jsonData';
 import { connect } from 'react-redux';
 import GenreSelect from "./GenreSelect";
 import Pagination from "./Pagination";
 
 
 const Table = (props) => {
-    const [currentPage, setCurrentPage] = useState(1)
-    const [loading, setLoading] = useState(false)
-    const [postsPerPage] = useState(10)
-    const [search, setSearch] = useState(null)
-    // const [activeFilterOn, setActiveFilterOn] = useState(false)
-    const data = props.data
-    let receivedData = data.sort((a, b) => a.name.localeCompare(b.name)) || null
+    const [currentPage, setCurrentPage] = useState(1);
+    const [loading, setLoading] = useState(false);
+    const [postsPerPage] = useState(10);
+    const [search, setSearch] = useState(null);
+    // const data = props.data;
+    const data = jsonData;    //importing from file in case lose accesss to API
+    let receivedData = data.sort((a, b) => a.name.localeCompare(b.name)) || null;
 
 
     const logic = receivedData.filter(restuarant => {
@@ -99,6 +101,8 @@ const Table = (props) => {
             </table >
 
             { (props.chosenState.length > 0 && filteredState.length === 0) && <NoStateDisplay /> }
+
+            { (props.chosenState.length > 0 && logic.length === 0) && <NoResultsDisplay/> }
 
             <Pagination postsPerPage={postsPerPage} currentPage={currentPage} logic={logic} totalPosts={receivedData.length} paginate={paginate} />
         </div >
