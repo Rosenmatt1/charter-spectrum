@@ -1,4 +1,4 @@
-.center {
+.main {
 	width: 100%;
 	min-height: 100vh;
 	background: #c850c0;
@@ -10,9 +10,13 @@
 	align-items: center;
 }
 
-button {
+/* button {
 	height: 50px;
 	width: 50px;
+} */
+
+input {
+	height: 30px;
 }
 
 table.gridtable {
@@ -26,7 +30,7 @@ table.gridtable {
 
 table.gridtable th {
 	border-width: 1px;
-	padding: 8px;
+	padding: 10px;
 	border-style: solid;
 	border-color: #666666;
 	background-color: #dedede;
@@ -34,7 +38,7 @@ table.gridtable th {
 
 table.gridtable td {
 	border-width: 1px;
-	padding: 8px;
+	padding: 10px;
 	border-style: solid;
 	border-color: #666666;
 	background-color: #ffffff;
@@ -45,35 +49,52 @@ tbody tr {
 	font-size: 15px;
     line-height: 1.2;
 	font-weight: unset;
-	/* padding: 1rem; */
 }
 
 .cityFilter {
 	min-width: 150px;
+	height: 30px;
+	color: #fff;
+	background: #36304a !important;
 }
 
 .nameFilter {
 	min-width: 250px;
+	color: #fff;
+	background: #36304a !important;
+}
+
+.stateFilter {
+	background: #36304a !important;
+}
+
+.phoneFilter {
+	color: #fff;
+	background: #36304a !important;
 }
 
 .genreFilter {
 	min-width: 400px;
+	background: #36304a !important;
 }
 
 .pagination {
     display: inline-block;
   }
   
-  .pagination a {
+.pagination a {
     color: black;
     float: left;
     padding: 8px 16px;
     text-decoration: none;
   }
   
-  .pagination a.active {
-    background-color: #4CAF50;
+.pagination a.active {
+    background: #36304a;
     color: white;
   }
   
-  .pagination a:hover:not(.active) {background-color: #ddd;}
+.pagination a:hover:not(.active) {
+	background: #36304a;
+	color: white;
+}

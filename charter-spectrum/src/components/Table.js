@@ -71,25 +71,20 @@ const Table = (props) => {
 
     return (
         <div>
-            <input onChange={(e) => setSearch(e.target.value)} placeholder="search by city, state, or genre"/>
+            <input onChange={(e) => setSearch(e.target.value)} placeholder="search by city, state, or genre" />
             {/* <button onClick={() => searchSubmit()}>Button</button> */}
 
             <table className="gridtable" >
                 <tbody>
-                    <tr>
-                        <th className="nameFilter"> </th>
-                        <th className="cityFilter"> </th>
-                        <th className="State Filter"> <StatesSelect /></th>
-                        <th className="phoneFilter"> </th>
-                        <th className="genreFilter"> <GenreSelect data={genresFiltered} /> </th>
-                    </tr>
-                    <tr>
-                        <th>Name</th>
-                        <th>City</th>
-                        <th>State</th>
-                        <th>Phone</th>
-                        <th>Genre</th>
-                    </tr>
+                    {/* <thead> */}
+                        <tr className="tableHead">
+                            <th className="nameFilter"> Name </th>
+                            <th className="cityFilter"> City </th>
+                            <th className="stateFilter"> <StatesSelect /></th>
+                            <th className="phoneFilter"> Phone </th>
+                            <th className="genreFilter"> <GenreSelect data={genresFiltered} /> </th>
+                        </tr>
+                    {/* </thead> */}
 
                     {currentPosts.map((restuarant, idx) => (
                         <tr key={idx}>
@@ -100,9 +95,9 @@ const Table = (props) => {
                 </tbody>
             </table >
 
-            { (props.chosenState.length > 0 && filteredState.length === 0) && <NoStateDisplay /> }
+            { (props.chosenState.length > 0 && filteredState.length === 0) && <NoStateDisplay />}
 
-            { (props.chosenState.length > 0 && logic.length === 0) && <NoResultsDisplay/> }
+            { (props.chosenState.length > 0 && logic.length === 0) && <NoResultsDisplay />}
 
             <Pagination postsPerPage={postsPerPage} currentPage={currentPage} logic={logic} totalPosts={receivedData.length} paginate={paginate} />
         </div >

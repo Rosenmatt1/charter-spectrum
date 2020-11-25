@@ -26,7 +26,7 @@ const App = () => {
 
 
     return (
-        <div id="root" className="center">
+        <div id="root" className="main">
             <Table data={fetchedData} />
         </div>
     )
