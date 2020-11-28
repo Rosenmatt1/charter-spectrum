@@ -95,7 +95,7 @@ const Table = (props) => {
                 </tbody>
             </table >
 
-            { (props.chosenState.length > 0 && filteredState.length === 0) && <NoStateDisplay />}
+            {/* { (props.chosenState.length > 0 && filteredState.length === 0) && <NoStateDisplay />} */}
 
             { (props.chosenState.length > 0 && logic.length === 0) && <NoResultsDisplay />}
 
