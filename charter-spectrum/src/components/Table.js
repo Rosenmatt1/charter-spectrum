@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from '../styles.css';
 import StatesSelect from './StatesSelect';
-import NoStateDisplay from './NoStateDisplay';
 import NoResultsDisplay from './NoResultsDisplay';
 import jsonData from './jsonData';
 import { connect } from 'react-redux';
@@ -39,14 +38,12 @@ const Table = (props) => {
         if (searchActivated && stateActivated && genreActivated) return restuarant
     })
 
-    console.log("LENGTH", logic.length)
 
-
-    const filteredState = receivedData.filter(restuarant => {
-        if (restuarant.state === props.chosenState) {
-            return restuarant
-        }
-    })
+    // const filteredState = receivedData.filter(restuarant => {
+    //     if (restuarant.state === props.chosenState) {
+    //         return restuarant
+    //     }
+    // })
 
 
     let genresFiltered = []
@@ -76,7 +73,6 @@ const Table = (props) => {
 
             <table className="gridtable" >
                 <tbody>
-                    {/* <thead> */}
                         <tr className="tableHead">
                             <th className="nameFilter"> Name </th>
                             <th className="cityFilter"> City </th>
@@ -84,7 +80,6 @@ const Table = (props) => {
                             <th className="phoneFilter"> Phone </th>
                             <th className="genreFilter"> <GenreSelect data={genresFiltered} /> </th>
                         </tr>
-                    {/* </thead> */}
 
                     {currentPosts.map((restuarant, idx) => (
                         <tr key={idx}>
@@ -94,8 +89,6 @@ const Table = (props) => {
 
                 </tbody>
             </table >
-
-            {/* { (props.chosenState.length > 0 && filteredState.length === 0) && <NoStateDisplay />} */}
 
             { (props.chosenState.length > 0 && logic.length === 0) && <NoResultsDisplay />}
 
