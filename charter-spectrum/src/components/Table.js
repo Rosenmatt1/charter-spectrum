@@ -10,7 +10,7 @@ import Pagination from "./Pagination";
 
 const Table = (props) => {
     const [currentPage, setCurrentPage] = useState(1);
-    const [loading, setLoading] = useState(false);
+    // const [loading, setLoading] = useState(false);
     const [postsPerPage] = useState(10);
     const [search, setSearch] = useState(null);
     // const data = props.data;
