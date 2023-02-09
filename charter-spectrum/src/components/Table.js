@@ -73,13 +73,13 @@ const Table = (props) => {
 
             <table className="gridtable" >
                 <tbody>
-                        <tr className="tableHead">
-                            <th className="nameFilter"> Name </th>
-                            <th className="cityFilter"> City </th>
-                            <th className="stateFilter"> <StatesSelect /></th>
-                            <th className="phoneFilter"> Phone </th>
-                            <th className="genreFilter"> <GenreSelect data={genresFiltered} /> </th>
-                        </tr>
+                    <tr className="tableHead">
+                        <th className="nameFilter"> Name </th>
+                        <th className="cityFilter"> City </th>
+                        <th className="stateFilter"> <StatesSelect /></th>
+                        <th className="phoneFilter"> Phone </th>
+                        <th className="genreFilter"> <GenreSelect data={genresFiltered} /> </th>
+                    </tr>
 
                     {currentPosts.map((restuarant, idx) => (
                         <tr key={idx}>
@@ -90,7 +90,7 @@ const Table = (props) => {
                 </tbody>
             </table >
 
-            { (props.chosenState.length > 0 && logic.length === 0) && <NoResultsDisplay />}
+            {(props.chosenState.length > 0 && logic.length === 0) && <NoResultsDisplay />}
 
             <Pagination postsPerPage={postsPerPage} currentPage={currentPage} logic={logic} totalPosts={receivedData.length} paginate={paginate} />
         </div >
