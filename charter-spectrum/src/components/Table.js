@@ -37,6 +37,7 @@ const Table = (props) => {
 
         if (searchActivated && stateActivated && genreActivated) return restuarant
     })
+    //if any of these are not true, then don't return the restuarnt.  But all are set to true to show all to start.
 
 
     // const filteredState = receivedData.filter(restuarant => {
